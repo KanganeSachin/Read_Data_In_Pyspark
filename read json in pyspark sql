@@ -1,0 +1,12 @@
+
+
+# read Basic json data using pyspark sql
+
+from pyspark.sql import *
+from pyspark.sql import functions as F
+
+spark = SparkSession.builder.master("local[2]").appName("testing").getOrCreate()
+
+spark.sql("CREATE OR REPLACE TEMPORARY VIEW zip USING json OPTIONS" +
+      " (path 'E://bigdata//dataset//zips.json')")        # created view for given data   
+spark.sql("select * from zip where pop = 177 ").show()    # call the view using sql query 
