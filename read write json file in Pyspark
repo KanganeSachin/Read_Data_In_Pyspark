@@ -1,0 +1,11 @@
+# read and write json data in local system 
+
+from pyspark.sql import *
+from pyspark.sql import functions as F
+
+spark = SparkSession.builder.master("local[2]").appName("testing").getOrCreate()
+
+df = spark.read.json("E://bigdata//dataset//zips.json")
+df.printSchema()
+df.show()
+df.write.mode('Overwrite').json("E://abc")
