@@ -8,3 +8,7 @@ spark = SparkSession.builder.master("local[2]").appName("testing").getOrCreate()
 df=spark.read.parquet("E://bigdata//dataset//userdata1.parquet")
 df.show()
 df.write.parquet("E://parquet")
+
+# if want to append or overwrite present file data
+#df.write.mode('append').parquet("E://paraquet")
+#df.write.mode('overwrite').parquet("E://paraquet")
