@@ -1,0 +1,19 @@
+
+# read multiple csv file or folder 
+
+from pyspark.sql import *
+from pyspark.sql import functions as F
+
+spark = SparkSession.builder.master("local[2]").appName("testing").getOrCreate()
+
+df = spark.read.option("header",'true').csv("E://13Jan//2017.csv")
+var = df.count()    
+print("2017:",var)
+
+df = spark.read.option("header",'true').csv("E://13Jan//2015.csv")
+var = df.count()
+print("2015:",var)
+
+df = spark.read.option("header",'true').csv("E://13Jan//*.csv")
+var = df.count()
+print("Total: ",var)
